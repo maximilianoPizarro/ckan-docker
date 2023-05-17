@@ -1,5 +1,9 @@
 # Docker Compose setup for CKAN
 
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/maximilianoPizarro/ckan-docker&cloudshell_tutorial=README.md&cloudshell_workspace=/)
+
+
+[![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/maximilianoPizarro/ckan-docker/master/docker-compose.yml)
 
 * [Overview](#overview)
 * [Installing Docker](#installing-docker)
