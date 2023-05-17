@@ -32,7 +32,7 @@ spec:
               value: /var/lib/postgresql/data/db
             - name: POSTGRES_PASSWORD
               value: ckan
-          image: db
+          image: postgres:12-alpine
           livenessProbe:
             exec:
               command:

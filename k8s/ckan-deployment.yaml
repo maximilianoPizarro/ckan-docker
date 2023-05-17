@@ -281,7 +281,7 @@ spec:
                 configMapKeyRef:
                   key: WORKER_CONTAINER_NAME
                   name: env
-          image: ckan
+          image: ckan/ckan-base:ckan-2.10.0
           livenessProbe:
             exec:
               command:
