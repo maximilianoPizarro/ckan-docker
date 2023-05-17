@@ -1,0 +1,15 @@
+tasks:
+
+  - init: |
+
+      docker-compose pull
+
+  - command: |
+
+      docker-compose up
+
+ports:
+
+  - port: 5000
+
+    onOpen: open-browser
