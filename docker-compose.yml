@@ -7,17 +7,6 @@ volumes:
 
 services:
 
-  nginx:
-    container_name: ${NGINX_CONTAINER_NAME}
-    build:
-      context: nginx/
-      dockerfile: Dockerfile
-    depends_on:
-      ckan:
-        condition: service_healthy
-    ports:
-      - "0.0.0.0:${NGINX_PORT_HOST}:${NGINX_PORT}"
-      - "0.0.0.0:${NGINX_SSLPORT_HOST}:${NGINX_SSLPORT}"
     
   ckan:
     container_name: ${CKAN_CONTAINER_NAME}
@@ -28,15 +17,8 @@ services:
         - TZ=${TZ}
     env_file:
       - .env
-    depends_on:
-      db:
-        condition: service_healthy
-      solr:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
     ports:
-      - "0.0.0.0:${CKAN_PORT_HOST}:${CKAN_PORT}" 
+      - "0.0.0.0:5000:5000" 
     volumes:
       - ckan_storage:/var/lib/ckan
     restart: unless-stopped

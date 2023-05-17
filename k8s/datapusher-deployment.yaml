@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: datapusher
+  name: datapusher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: datapusher
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: datapusher
+    spec:
+      containers:
+        - image: 'ckan/ckan-base-datapusher:'
+          livenessProbe:
+            exec:
+              command:
+                - wget
+                - -qO
+                - /dev/null
+                - http://localhost:8800
+          name: datapusher
+          resources: {}
+      restartPolicy: Always
+status: {}
