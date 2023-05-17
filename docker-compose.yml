@@ -9,7 +9,7 @@ services:
 
     
   ckan:
-    container_name: ${CKAN_CONTAINER_NAME}
+    container_name: ckan-docker
     build:
       context: ckan/
       dockerfile: Dockerfile
@@ -26,22 +26,22 @@ services:
       test: ["CMD", "wget", "-qO", "/dev/null", "http://localhost:5000"]
     
   datapusher:
-    container_name: ${DATAPUSHER_CONTAINER_NAME}
-    image: ckan/ckan-base-datapusher:${DATAPUSHER_VERSION}
+    container_name: datapusher-docker
+    image: ckan/ckan-base-datapusher:0.0.20
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "-qO", "/dev/null", "http://localhost:8800"]
 
   db:
-    container_name: ${POSTGRESQL_CONTAINER_NAME}
+    container_name: db-docker
     build:
       context: postgresql/
       args:
-       - DATASTORE_READONLY_PASSWORD=${DATASTORE_READONLY_PASSWORD}
-       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+       - DATASTORE_READONLY_PASSWORD=datastore
+       - POSTGRES_PASSWORD=ckan
     environment:
-      - DATASTORE_READONLY_PASSWORD=${DATASTORE_READONLY_PASSWORD}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - DATASTORE_READONLY_PASSWORD=datastore
+      - POSTGRES_PASSWORD=ckan
       - PGDATA=/var/lib/postgresql/data/db
     volumes:
       - pg_data:/var/lib/postgresql/data
@@ -51,7 +51,7 @@ services:
      
   solr:
     container_name: ${SOLR_CONTAINER_NAME}
-    image: ckan/ckan-solr:${SOLR_IMAGE_VERSION}
+    image: ckan/ckan-solr:2.9-solr8
     volumes:
       - solr_data:/var/solr
     restart: unless-stopped
@@ -59,8 +59,8 @@ services:
       test: ["CMD", "wget", "-qO", "/dev/null", "http://localhost:8983/solr/"]
 
   redis:
-    container_name: ${REDIS_CONTAINER_NAME}
-    image: redis:${REDIS_VERSION}
+    container_name: redis-docker
+    image: redis:6
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "redis-cli", "-e", "QUIT"]

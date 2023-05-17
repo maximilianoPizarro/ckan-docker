@@ -27,9 +27,11 @@ spec:
       containers:
         - env:
             - name: DATASTORE_READONLY_PASSWORD
+              value: datastore
             - name: PGDATA
               value: /var/lib/postgresql/data/db
             - name: POSTGRES_PASSWORD
+              value: ckan
           image: db
           livenessProbe:
             exec:
@@ -37,7 +39,7 @@ spec:
                 - pg_isready
                 - -U
                 - ckan
-          name: db
+          name: db-docker
           resources: {}
           volumeMounts:
             - mountPath: /var/lib/postgresql/data

@@ -289,7 +289,7 @@ spec:
                 - -qO
                 - /dev/null
                 - http://localhost:5000
-          name: ckan
+          name: ckan-docker
           ports:
             - containerPort: 5000
           resources: {}

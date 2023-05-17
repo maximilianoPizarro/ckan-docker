@@ -24,7 +24,7 @@ spec:
         io.kompose.service: datapusher
     spec:
       containers:
-        - image: 'ckan/ckan-base-datapusher:'
+        - image: ckan/ckan-base-datapusher:0.0.20
           livenessProbe:
             exec:
               command:
@@ -32,7 +32,7 @@ spec:
                 - -qO
                 - /dev/null
                 - http://localhost:8800
-          name: datapusher
+          name: datapusher-docker
           resources: {}
       restartPolicy: Always
 status: {}

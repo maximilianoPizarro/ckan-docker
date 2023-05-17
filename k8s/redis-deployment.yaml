@@ -24,14 +24,14 @@ spec:
         io.kompose.service: redis
     spec:
       containers:
-        - image: 'redis:'
+        - image: redis:6
           livenessProbe:
             exec:
               command:
                 - redis-cli
                 - -e
                 - QUIT
-          name: redis
+          name: redis-docker
           resources: {}
       restartPolicy: Always
 status: {}
