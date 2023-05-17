@@ -11,5 +11,10 @@ tasks:
 ports:
 
   - port: 5000
-
     onOpen: open-browser
+  - port: 8443
+    onOpen: open-browser
+  - port: 8800
+    onOpen: open-preview
+  - port: 8983
+    onOpen: open-preview     
