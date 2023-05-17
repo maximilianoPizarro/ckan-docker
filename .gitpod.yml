@@ -2,11 +2,11 @@ tasks:
 
   - init: |
 
-      docker-compose pull
+      docker compose build
 
   - command: |
 
-      docker-compose up
+      docker compose up
 
 ports:
 
